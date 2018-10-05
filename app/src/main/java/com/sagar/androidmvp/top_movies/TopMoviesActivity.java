@@ -13,6 +13,8 @@ import com.sagar.androidmvp.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -23,6 +25,9 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
 
     @BindView(R.id.listActivity_rootView)
     public ViewGroup rootView;
+
+    @Inject
+    TopMoviesActivityMvp.Presenter presenter;
 
     private ListAdapter listAdapter;
     private List<ViewModel> resultList = new ArrayList<>();
@@ -50,6 +55,8 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
     @Override
     protected void onResume() {
         super.onResume();
+        presenter.setView(this);
+        presenter.loadData();
     }
 
 
