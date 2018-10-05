@@ -12,11 +12,11 @@
 
 
     <TextView
-        android:id="@+id/textView_list_place_name"
+        android:id="@+id/textView_list_movie_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:text="Supermarket"
+        android:text="Movie Name"
         android:textAppearance="?attr/textAppearanceListItem"
         android:textColor="@android:color/black"
         android:textSize="22sp"
@@ -24,10 +24,10 @@
 
 
     <TextView
-        android:id="@+id/textView_list_address"
+        android:id="@+id/textView_movie_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="pune"
+        android:text="India"
         android:maxLength="18"
         android:maxLines="1"
         android:textAppearance="?attr/textAppearanceSearchResultSubtitle"

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".TopMoviesActivity">
 
 
     <android.support.v7.widget.RecyclerView
@@ -18,6 +18,6 @@
         android:clipToPadding="false"
         android:scrollbars="vertical"
         app:layout_behavior="android.support.design.widget.AppBarLayout$Scrolling"
-        tools:listitem="@layout/list_row"/>
+        tools:listitem="@layout/movie_list_row"/>
 
 </LinearLayout>

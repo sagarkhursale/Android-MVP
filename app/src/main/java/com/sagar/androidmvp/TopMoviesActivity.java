@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class TopMoviesActivity extends AppCompatActivity {
 
     @BindView(R.id.recycler_view)
     private RecyclerView recyclerView;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_top_movies);
 
         ButterKnife.bind(this);
 
