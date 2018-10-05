@@ -1,9 +1,11 @@
-package com.sagar.androidmvp;
+package com.sagar.androidmvp.top_movies;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import com.sagar.androidmvp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
