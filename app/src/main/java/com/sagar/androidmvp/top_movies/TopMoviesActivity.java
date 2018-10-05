@@ -1,11 +1,13 @@
 package com.sagar.androidmvp.top_movies;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.sagar.androidmvp.R;
@@ -18,7 +20,10 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 public class TopMoviesActivity extends AppCompatActivity implements TopMoviesActivityMvp.View {
+
+    private static final String TAG = TopMoviesActivity.class.getSimpleName();
 
     @BindView(R.id.recycler_view)
     public RecyclerView recyclerView;
@@ -68,13 +73,20 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
 
     @Override
     public void updateData(ViewModel viewModel) {
+        resultList.add(viewModel);
+        if (resultList.isEmpty()) {
+            listAdapter.notifyItemInserted(0);
+        } else {
+            listAdapter.notifyItemInserted(resultList.size() - 1);
+        }
 
+        Log.i(TAG, "updateData : " + resultList.size());
     }
 
 
     @Override
     public void showSnackbar(String message) {
-
+        Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show();
     }
 
 
