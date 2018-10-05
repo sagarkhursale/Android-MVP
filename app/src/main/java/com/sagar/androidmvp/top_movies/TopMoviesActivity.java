@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 
 import com.sagar.androidmvp.R;
+import com.sagar.androidmvp.root.App;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
     @BindView(R.id.listActivity_rootView)
     public ViewGroup rootView;
 
-    @Inject
+    ////////////////@Inject
     TopMoviesActivityMvp.Presenter presenter;
 
     private ListAdapter listAdapter;
@@ -44,6 +45,8 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
         setContentView(R.layout.activity_top_movies);
 
         ButterKnife.bind(this);
+
+        ((App)getApplication()).getComponent().inject(this);
 
         listAdapter = new ListAdapter(resultList);
         recyclerView.setAdapter(listAdapter);
