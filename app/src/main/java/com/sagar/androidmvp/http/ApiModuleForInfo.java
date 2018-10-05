@@ -2,6 +2,7 @@ package com.sagar.androidmvp.http;
 
 import android.support.annotation.NonNull;
 import java.io.IOException;
+import dagger.Module;
 import dagger.Provides;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -15,9 +16,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 
-public class ApiModuleForName {
-
-    private final String BASE_URL="https://api.themoviedb.org/3/movie/";
+@Module
+public class ApiModuleForInfo {
+    private final String BASE_URL = "https://api.themoviedb.org/3/movie/";
     private final String API_KEY="ef11f8a97d50d37a71e4353b2fb086a6";
 
 
@@ -43,18 +44,18 @@ public class ApiModuleForName {
         return new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .client(client)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 
 
     @Provides
-    public MovieApiService provideApiService()
-    {
-        return provideRetrofit(BASE_URL,provideClient()).create(MovieApiService.class);
+    public MoreInfoApiService provideApiService() {
+        return provideRetrofit(BASE_URL, provideClient()).create(MoreInfoApiService.class);
     }
 
 
     // END
 }
+
