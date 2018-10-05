@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="?android:selectableItemBackground"
+    android:gravity="center_vertical">
+
+
+    <TextView
+        android:id="@+id/textView_list_place_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="Supermarket"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        />
+
+
+    <TextView
+        android:id="@+id/textView_list_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="pune"
+        android:maxLength="18"
+        android:maxLines="1"
+        android:textAppearance="?attr/textAppearanceSearchResultSubtitle"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        />
+</LinearLayout>
