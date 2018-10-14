@@ -20,10 +20,13 @@ public class TopMoviesModule {
     }
 
 
+
     @Provides
     public TopMoviesActivityMvp.Model provideTopMoviesActivityModel(Repository repository) {
         return new TopMoviesModel(repository);
     }
+
+
 
 
     public Repository provideRepository(MovieApiService movieApiService, MoreInfoApiService moreInfoApiService) {

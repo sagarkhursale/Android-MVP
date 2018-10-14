@@ -2,6 +2,8 @@ package com.sagar.androidmvp.http;
 
 import android.support.annotation.NonNull;
 import java.io.IOException;
+
+import dagger.Module;
 import dagger.Provides;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -14,7 +16,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-
+@Module
 public class ApiModuleForName {
 
     private final String BASE_URL="https://api.themoviedb.org/3/movie/";
