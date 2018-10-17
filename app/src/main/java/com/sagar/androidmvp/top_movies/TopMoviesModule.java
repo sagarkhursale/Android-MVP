@@ -20,15 +20,14 @@ public class TopMoviesModule {
     }
 
 
-
     @Provides
     public TopMoviesActivityMvp.Model provideTopMoviesActivityModel(Repository repository) {
         return new TopMoviesModel(repository);
     }
 
 
-
-
+    @Singleton
+    @Provides
     public Repository provideRepository(MovieApiService movieApiService, MoreInfoApiService moreInfoApiService) {
         return new TopMoviesRepository(movieApiService, moreInfoApiService);
     }
