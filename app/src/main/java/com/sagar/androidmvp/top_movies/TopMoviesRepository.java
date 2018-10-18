@@ -3,7 +3,6 @@ package com.sagar.androidmvp.top_movies;
 import com.sagar.androidmvp.http.MoreInfoApiService;
 import com.sagar.androidmvp.http.MovieApiService;
 import com.sagar.androidmvp.http.apimodel.OmdbApi;
-import com.sagar.androidmvp.http.apimodel.ProductionCountry;
 import com.sagar.androidmvp.http.apimodel.Result;
 import com.sagar.androidmvp.http.apimodel.TopRated;
 
@@ -17,6 +16,7 @@ import io.reactivex.functions.Function;
 
 
 public class TopMoviesRepository implements Repository {
+    private final String TAG = TopMoviesRepository.class.getSimpleName();
     private MovieApiService movieApiService;
     private MoreInfoApiService moreInfoApiService;
     private List<String> countries;
@@ -26,7 +26,7 @@ public class TopMoviesRepository implements Repository {
     private static final long STALE_MS = 20 * 1000; // Data is stale after 20 seconds.
 
 
-    public TopMoviesRepository(MovieApiService movieApiService, MoreInfoApiService moreInfoApiService) {
+    TopMoviesRepository(MovieApiService movieApiService, MoreInfoApiService moreInfoApiService) {
         this.movieApiService = movieApiService;
         this.moreInfoApiService = moreInfoApiService;
         this.timestamp = System.currentTimeMillis();
@@ -82,21 +82,22 @@ public class TopMoviesRepository implements Repository {
 
 
     @Override
-    public Observable<ProductionCountry> getCountriesFromNetwork() {
-        return getResultsFromNetwork().concatMap(new Function<Result, ObservableSource<OmdbApi>>() {
+    public Observable<String> getCountriesFromNetwork() {
+
+        return getResultsFromNetwork().concatMap(new Function<Result, Observable<OmdbApi>>() {
             @Override
-            public ObservableSource<OmdbApi> apply(Result result) throws Exception {
+            public Observable<OmdbApi> apply(Result result) throws Exception {
                 return moreInfoApiService.getCountry(result.getTitle());
             }
-        }).concatMap(new Function<OmdbApi, Observable<ProductionCountry>>() {
+        }).concatMap(new Function<OmdbApi, ObservableSource<? extends String>>() {
             @Override
-            public Observable<ProductionCountry> apply(OmdbApi omdbApi) throws Exception {
-                return Observable.fromIterable(omdbApi.getProductionCountries());
+            public ObservableSource<? extends String> apply(OmdbApi omdbApi) throws Exception {
+                return Observable.just(omdbApi.getCountry());
             }
-        }).doOnNext(new Consumer<ProductionCountry>() {
+        }).doOnNext(new Consumer<String>() {
             @Override
-            public void accept(ProductionCountry productionCountry) throws Exception {
-                countries.add(productionCountry.getName());
+            public void accept(String selection) throws Exception {
+                countries.add(selection);
             }
         });
     }
@@ -104,7 +105,7 @@ public class TopMoviesRepository implements Repository {
 
     @Override
     public Observable<String> getCountryData() {
-        return getCountriesFromMemory().switchIfEmpty(getCountriesFromMemory());
+        return getCountriesFromMemory().switchIfEmpty(getCountriesFromNetwork());
     }
 
 
@@ -115,3 +116,5 @@ public class TopMoviesRepository implements Repository {
 
 // END
 }
+
+

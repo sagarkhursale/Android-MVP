@@ -32,7 +32,7 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
     @BindView(R.id.listActivity_rootView)
     public ViewGroup rootView;
 
-    ////////////////@Inject
+    @Inject
     TopMoviesActivityMvp.Presenter presenter;
 
     private ListAdapter listAdapter;

@@ -1,7 +1,6 @@
 package com.sagar.androidmvp.top_movies;
 
 
-import com.sagar.androidmvp.http.apimodel.ProductionCountry;
 import com.sagar.androidmvp.http.apimodel.Result;
 import io.reactivex.Observable;
 
@@ -14,7 +13,7 @@ public interface Repository {
 
     Observable<String> getCountriesFromMemory();
 
-    Observable<ProductionCountry> getCountriesFromNetwork();
+    Observable<String> getCountriesFromNetwork();
 
     Observable<String> getCountryData();
 
